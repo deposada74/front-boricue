@@ -1,5 +1,5 @@
 {
-  "name": "boricue",
+  "name": "",
   "version": "1.0.0",
   "description": "Proyecto realizado para el manejo de residuos, hecho por Emanuel Gómez Diaz para uso del SENA, durante su etapa como monitor.",
   "main": "index.js",
@@ -11,29 +11,24 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Sena",
-    "residuos"
+    ""
   ],
-  "author": "Emanuel Gomez Diaz, SENA",
+  "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
-    "connect-flash": "^0.1.1",
-    "csurf": "^1.11.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
-    "firebase": "^10.1.0",
-    "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
     "@babel/node": "^7.22.6",
-    "@babel/plugin-transform-runtime": "^7.23.2",
+    "@babel/plugin-transform-runtime": "^7.23.6",
     "@babel/preset-env": "^7.22.9",
     "dotenv": "^16.3.1",
     "nodemon": "^3.0.1"

@@ -1,69 +1,54 @@
 // HOMEPAGE //
 
 import express from 'express';
+import mysql from 'mysql';
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('home');
+    res.render('reporte');
 });
 
-router.get('/acerca', (req, res) => {
-    res.render('acerca');
+router.get('/bodega', (req, res) => {
+    let consulta = "SELECT * FROM pedido";
+    conexion.query(consulta, (error, resultados) => {
+        if (error) {
+            throw error;
+        } else {
+            res.render('bodega', { datos: resultados });
+        }
+    });
 });
 
-router.get('/login', (req, res) => {
-    res.render('login');
+
+
+let conexion = mysql.createConnection({
+    host: 'localhost',
+    database: 'prototype',
+    user: 'root',
+    password: ''
 });
 
-router.get('/contactanos', (req, res) => {
-    res.render('contactanos');
-});
+router.post('/validar', (req, res) => {
+    const datos = req.body;
 
-router.get('/preguntas', (req, res) => {
-    res.render('preguntas');
-});
+    let nombre = datos.nombre;
+    let p_inicial = datos.p_inicial;
+    let n_pedido = datos.n_pedido;
+    let cantidad = datos.cantidad;
+    let medida = datos.medida;
+    let estado = datos.estado;
+    let p_final = datos.p_final
 
-router.get('/servicios', (req, res) => {
-    res.render('servicios');
-});
+    let reporte = "INSERT INTO pedido (nombre, producto_inicial, numero_pedido, cantidad, medida, estado, producto_final) VALUES ('"+ nombre +"', '"+ p_inicial +"','"+ n_pedido +"','"+ cantidad +"','"+ medida +"' , '"+ estado +"', '"+ p_final +"')"
 
-router.get('/T&C', (req, res) => {
-    res.render('tyc');
-});
-
-//DASHBOARD//
-
-router.get('/Inicio', (req, res) => {
-    res.render('dashInicio');
-});
-
-router.get('/Publicaciones', (req, res) => {
-    res.render('dashPublicaciones');
-});
-
-router.get('/CrearPublicacion', (req, res) => {
-    res.render('dashCrearPubli');
-});
-
-router.get('/EditarPublicacion', (req, res) => {
-    res.render('dashEditarPubli');
-});
-
-router.get('/Chat', (req, res) => {
-    res.render('dashChat');
-});
-
-router.get('/Perfil', (req, res) => {
-    res.render('dashPerfil');
-});
-
-router.get('/EditarPerfil', (req, res) => {
-    res.render('dashEditarPerfil');
-});
-
-router.get('/Reportes', (req, res) => {
-    res.render('dashReportes');
+    conexion.query(reporte, (error) =>{
+        if(error){
+            throw error;
+        } else{
+            console.log('Reporte generado correctamente');
+        }
+    })
 });
 
 export default router;
